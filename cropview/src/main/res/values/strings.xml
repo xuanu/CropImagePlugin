@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CropView</string>
+    <string name="cropview_finish">完成</string>
+    <string name="cropview_crop_image">裁剪图片</string>
+    <string name="cropview_file_dont_exist">文件不存在</string>
+    <string name="cropview_back">返回</string>
+</resources>

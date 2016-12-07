@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.qimon.view.cropview">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true"
+        >
+        <!--裁剪图片 hardwareAccelerated="false" 不启动硬件加速，否则会导致无法加载大图的问题 -->
+        <activity
+            android:name="com.qimon.view.cropview.activity.CropImageActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden"
+            android:hardwareAccelerated="false"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
+    </application>
+
+</manifest>
