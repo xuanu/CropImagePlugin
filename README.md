@@ -6,6 +6,22 @@
 增加方法，可以设置裁剪框比例
 
 使用方法：
+1. 项目中添加   
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+2. 模块中添加 
+```
+dependencies {
+	        compile 'com.github.xuanu:CropImagePlugin:0.0.1'
+	}
+```  
+3. 使用  
 ```
  startActivityForResult(new Intent(this, CropImageActivity.class).putExtra(CropImageActivity.Key_Key, filePath2).putExtra(CropImageActivity.SCALE_KEY, 1), xxx);
 //Key_Key,本地路径，必填
