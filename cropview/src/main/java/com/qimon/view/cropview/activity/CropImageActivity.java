@@ -30,6 +30,10 @@ public class CropImageActivity extends Activity {
      * 传入图片路径使用的key
      **/
     public static final String Key_Key = "key";
+    /**
+     * 比例
+     */
+    public static final String SCALE_KEY = "scale";
     //
     /**
      * 控件
@@ -66,9 +70,11 @@ public class CropImageActivity extends Activity {
             Toast.makeText(mContext, R.string.cropview_file_dont_exist, Toast.LENGTH_SHORT).show();
             finish();
         }
+        float scale = getIntent().getFloatExtra(SCALE_KEY, 1);
         back_btn = (TextView) findViewById(R.id.aci_back_btn);
         ok_btn = (TextView) findViewById(R.id.aci_ok_btn);
         mCliImage = (ClipImageLayout) findViewById(R.id.aci_crop_cil);
+        mCliImage.setScale(scale);
         //加载图片不缓存，不然下次加载会是重复图片
         mCliImage.getZoomImageView().setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
         //
