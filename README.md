@@ -23,7 +23,7 @@ dependencies {
 ```  
 3. 使用  
 ```
- startActivityForResult(new Intent(this, CropImageActivity.class).putExtra(CropImageActivity.Key_Key, filePath2).putExtra(CropImageActivity.SCALE_KEY, 1), xxx);
+ startActivityForResult(new Intent(this, CropImageActivity.class).putExtra(CropImageActivity.Key_Key, filePath2).putExtra(CropImageActivity.SCALE_KEY, 1f), xxx);//一定要加f
 //Key_Key,本地路径，必填
 //scale比例，选填
 ```
