@@ -70,7 +70,7 @@ public class CropImageActivity extends Activity {
             Toast.makeText(mContext, R.string.cropview_file_dont_exist, Toast.LENGTH_SHORT).show();
             finish();
         }
-        float scale = getIntent().getFloatExtra(SCALE_KEY, 1);
+        float scale = getIntent().getFloatExtra(SCALE_KEY, 1.0f);
         back_btn = (TextView) findViewById(R.id.aci_back_btn);
         ok_btn = (TextView) findViewById(R.id.aci_ok_btn);
         mCliImage = (ClipImageLayout) findViewById(R.id.aci_crop_cil);

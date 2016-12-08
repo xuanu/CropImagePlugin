@@ -54,7 +54,10 @@ public class MainActivity extends AppCompatActivity {
             case 100:
             case 101:
                 String filePath2 = getGalleryPath(MainActivity.this, intent.getData());
-                startActivityForResult(new Intent(this, CropImageActivity.class).putExtra(CropImageActivity.Key_Key, filePath2), 102);
+                Intent tempIntent = new Intent(this, CropImageActivity.class);
+                tempIntent.putExtra(CropImageActivity.Key_Key, filePath2);
+                tempIntent.putExtra(CropImageActivity.SCALE_KEY, 3f);
+                startActivityForResult(tempIntent, 102);
                 break;
             case 102:
                 mImageView.setImageBitmap(BitmapFactory.decodeFile(intent.getStringExtra(CropImageActivity.Key_Key)));
