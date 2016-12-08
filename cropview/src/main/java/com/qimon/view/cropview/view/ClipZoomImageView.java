@@ -455,7 +455,7 @@ public class ClipZoomImageView extends ImageView implements OnTouchListener {
 
     public void setHorizontalPadding(int mHorizontalPadding) {
         if (mHorizontalPadding > getWidth() || mHorizontalPadding < 0) {
-            mHorizontalPadding = 0;
+            mHorizontalPadding = ClipImageLayout.dp2px(getContext(), ClipImageLayout.DEFAULT_HORIZONTAL_PADDING_SIZE);
         }
         this.mHorizontalPadding = mHorizontalPadding;
 //        initScale();

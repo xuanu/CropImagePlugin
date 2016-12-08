@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 String filePath2 = getGalleryPath(MainActivity.this, intent.getData());
                 Intent tempIntent = new Intent(this, CropImageActivity.class);
                 tempIntent.putExtra(CropImageActivity.Key_Key, filePath2);
-                tempIntent.putExtra(CropImageActivity.SCALE_KEY, 3f);
+                tempIntent.putExtra(CropImageActivity.SCALE_KEY, 1f);
                 startActivityForResult(tempIntent, 102);
                 break;
             case 102:

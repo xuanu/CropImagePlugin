@@ -16,6 +16,8 @@ public class ClipImageLayout extends RelativeLayout {
     private ClipZoomImageView mZoomImageView;
     private ClipImageBorderView mClipImageView;
 
+    public static final int DEFAULT_HORIZONTAL_PADDING_SIZE = 20;
+
     /**
      * 这里测试，直接写死了大小，真正使用过程中，可以提取为自定义属性
      */
@@ -33,7 +35,6 @@ public class ClipImageLayout extends RelativeLayout {
 
         this.addView(mZoomImageView, lp);
         this.addView(mClipImageView, lp);
-
         // 计算padding的px
         mHorizontalPadding = (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, mHorizontalPadding, getResources()
@@ -74,5 +75,9 @@ public class ClipImageLayout extends RelativeLayout {
      */
     public Bitmap clip() {
         return mZoomImageView.clip();
+    }
+
+    public static int dp2px(Context pContext, float dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, pContext.getResources().getDisplayMetrics());
     }
 }

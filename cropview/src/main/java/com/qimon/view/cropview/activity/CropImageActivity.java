@@ -1,5 +1,6 @@
 package com.qimon.view.cropview.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.anthonycr.grant.PermissionsManager;
+import com.anthonycr.grant.PermissionsResultAction;
 import com.qimon.view.cropview.R;
 import com.qimon.view.cropview.view.ClipImageLayout;
 
@@ -60,23 +63,12 @@ public class CropImageActivity extends Activity {
      * 初始化
      */
     private void init() {
-        String filePath = getIntent().getStringExtra(Key_Key);
-        if (TextUtils.isEmpty(filePath)) {
-            Toast.makeText(mContext, R.string.cropview_file_dont_exist, Toast.LENGTH_SHORT).show();
-            finish();
-        }
-        File file = new File(filePath);
-        if (!file.exists()) {
-            Toast.makeText(mContext, R.string.cropview_file_dont_exist, Toast.LENGTH_SHORT).show();
-            finish();
-        }
         float scale = getIntent().getFloatExtra(SCALE_KEY, 1.0f);
         back_btn = (TextView) findViewById(R.id.aci_back_btn);
         ok_btn = (TextView) findViewById(R.id.aci_ok_btn);
         mCliImage = (ClipImageLayout) findViewById(R.id.aci_crop_cil);
         mCliImage.setScale(scale);
         //加载图片不缓存，不然下次加载会是重复图片
-        mCliImage.getZoomImageView().setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
         //
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +82,38 @@ public class CropImageActivity extends Activity {
                 saveFile();
             }
         });
+        PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionsResultAction() {
+            @Override
+            public void onGranted() {
+                checkFile();
+            }
+
+            @Override
+            public void onDenied(String permission) {
+                Toast.makeText(mContext, R.string.crop_no_sdcard_permisssion, Toast.LENGTH_SHORT).show();
+                backCancel();
+            }
+        });
+    }
+
+    private void checkFile() {
+        String filePath = getIntent().getStringExtra(Key_Key);
+        if (TextUtils.isEmpty(filePath)) {
+            Toast.makeText(mContext, R.string.cropview_file_dont_exist, Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        File file = new File(filePath);
+        if (!file.exists()) {
+            Toast.makeText(mContext, R.string.cropview_file_dont_exist, Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        mCliImage.getZoomImageView().setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionsManager.getInstance().notifyPermissionsChange(permissions, grantResults);
     }
 
     @Override

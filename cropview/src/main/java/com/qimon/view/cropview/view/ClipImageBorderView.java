@@ -99,7 +99,7 @@ public class ClipImageBorderView extends View {
 
     public void setHorizontalPadding(int mHorizontalPadding) {
         if (mHorizontalPadding > getWidth() || mHorizontalPadding < 0) {
-            mHorizontalPadding = getWidth();
+            mHorizontalPadding = ClipImageLayout.dp2px(getContext(), ClipImageLayout.DEFAULT_HORIZONTAL_PADDING_SIZE);
         }
         this.mHorizontalPadding = mHorizontalPadding;
         invalidate();
