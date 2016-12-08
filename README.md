@@ -18,7 +18,7 @@ allprojects {
 2. 模块中添加 
 ```
 dependencies {
-	        compile 'com.github.xuanu:CropImagePlugin:0.0.1'
+	        compile 'com.github.xuanu:CropImagePlugin:0.0.3'
 	}
 ```  
 3. 使用  
