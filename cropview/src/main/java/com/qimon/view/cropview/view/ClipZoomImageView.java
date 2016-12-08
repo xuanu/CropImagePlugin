@@ -332,6 +332,9 @@ public class ClipZoomImageView extends ImageView implements OnTouchListener {
             int width = getWidth();
             int height = getHeight();
             mVerticalPadding = (int) (height - (width - 2 * mHorizontalPadding) / mDefaultScale) / 2;
+            if (mVerticalPadding < 0 || mVerticalPadding > getHeight()) {
+                mVerticalPadding = 0;
+            }
             // 拿到图片的宽和高
             int dw = d.getIntrinsicWidth();
             int dh = d.getIntrinsicHeight();
@@ -451,6 +454,9 @@ public class ClipZoomImageView extends ImageView implements OnTouchListener {
     }
 
     public void setHorizontalPadding(int mHorizontalPadding) {
+        if (mHorizontalPadding > getWidth() || mHorizontalPadding < 0) {
+            mHorizontalPadding = 0;
+        }
         this.mHorizontalPadding = mHorizontalPadding;
 //        initScale();
     }
